@@ -4,6 +4,7 @@
 #include "speculative.h"
 #include "log.h"
 #include "llama.h"
+#include "token_converter.h"
 
 #include <cstdio>
 #include <cstring>
@@ -138,6 +139,9 @@ int main(int argc, char ** argv) {
 
     const auto t_dec_start = ggml_time_us();
 
+    // 初始化token转换器
+    TokenConverter converter("/Users/ctrdh/Code/llama.cpp/qwen_to_ds.json");
+
     while (true) {
         // optionally, generate draft tokens that can be appended to the target batch
         //
@@ -177,7 +181,9 @@ int main(int argc, char ** argv) {
         // available logits from the batch and sample the next token until we run out of logits or the sampler
         // disagrees with the draft
         //
-        const auto ids = common_sampler_sample_and_accept_n(smpl, ctx_tgt, draft);
+
+        llama_tokens draft_qwen_to_ds = converter.convert_batch(draft);
+        const auto ids = common_sampler_sample_and_accept_n(smpl, ctx_tgt, draft_qwen_to_ds);
 
         //LOG_DBG("ids: %s\n", string_from(ctx_tgt, ids).c_str());
 
