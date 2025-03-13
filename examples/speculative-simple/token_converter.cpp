@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include "common/json.hpp"
-#include <common.h>
+#include "../common/json.hpp"
+#include "common.h"
 
 using json = nlohmann::json;
 
@@ -64,23 +64,23 @@ llama_tokens TokenConverter::convert_batch(llama_tokens qwen_ids) {
     llama_tokens ds_ids;
     ds_ids.reserve(qwen_ids.size());
 
-    std::cout << "Qwen输入: [";
-    for (size_t i = 0; i < qwen_ids.size(); i++) {
-        if (i > 0) std::cout << ", ";
-        std::cout << qwen_ids[i];
-    }
-    std::cout << "]" << std::endl;
+    // std::cout << "Qwen输入: [";
+    // for (size_t i = 0; i < qwen_ids.size(); i++) {
+    //     if (i > 0) std::cout << ", ";
+    //     std::cout << qwen_ids[i];
+    // }
+    // std::cout << "]" << std::endl;
 
-    for (int qwen_id : qwen_ids) {
-        ds_ids.push_back(convert(qwen_id));
-    }
+    // for (int qwen_id : qwen_ids) {
+    //     ds_ids.push_back(convert(qwen_id));
+    // }
 
-    std::cout << "DS输出: [";
-    for (size_t i = 0; i < ds_ids.size(); i++) {
-        if (i > 0) std::cout << ", ";
-        std::cout << ds_ids[i];
-    }
-    std::cout << "]" << std::endl;
+    // std::cout << "DS输出: [";
+    // for (size_t i = 0; i < ds_ids.size(); i++) {
+    //     if (i > 0) std::cout << ", ";
+    //     std::cout << ds_ids[i];
+    // }
+    // std::cout << "]" << std::endl;
 
     return ds_ids;
 }

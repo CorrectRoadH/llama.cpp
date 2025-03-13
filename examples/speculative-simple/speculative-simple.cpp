@@ -140,7 +140,7 @@ int main(int argc, char ** argv) {
     const auto t_dec_start = ggml_time_us();
 
     // 初始化token转换器
-    TokenConverter converter("/Users/ctrdh/Code/llama.cpp/qwen_to_ds.json");
+    TokenConverter converter("/home/ctrdh/Code/llama.cpp/qwen_to_ds.json");
 
     while (true) {
         // optionally, generate draft tokens that can be appended to the target batch

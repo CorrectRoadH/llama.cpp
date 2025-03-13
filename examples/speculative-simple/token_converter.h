@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include "common.h"  // 添加这行来引入 llama_tokens 类型
 
 class TokenConverter {
 private:
